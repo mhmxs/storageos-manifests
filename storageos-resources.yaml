@@ -5,8 +5,8 @@ v1.storageos.com                       Local     True        9m53s
 
 Resource: clusterrolebindings.rbac.authorization.k8s.io
 NAME                                                   ROLE                                                                               AGE
-storageos-manager-rolebinding                          ClusterRole/storageos-manager-role                                                 9m53s
-storageos-proxy-rolebinding                            ClusterRole/storageos-proxy-role                                                   9m53s
+storageos:operator                                     ClusterRole/storageos-manager-role                                                 9m53s
+storageos:proxy                                        ClusterRole/storageos-proxy-role                                                   9m53s
 storageos:api-manager                                  ClusterRole/storageos:api-manager                                                  9m19s
 storageos:csi-attacher                                 ClusterRole/storageos:csi-attacher                                                 9m19s
 storageos:csi-provisioner                              ClusterRole/storageos:csi-provisioner                                              9m19s
@@ -20,9 +20,9 @@ storageos:scheduler-extender                           ClusterRole/storageos:sch
 
 Resource: clusterroles.rbac.authorization.k8s.io
 NAME                                                                   CREATED AT
-storageos-manager-role                                                 2021-09-17T11:17:14Z
-storageos-metrics-reader                                               2021-09-17T11:17:14Z
-storageos-proxy-role                                                   2021-09-17T11:17:14Z
+storageos:operator                                                     2021-09-17T11:17:14Z
+storageos:metrics:reader                                               2021-09-17T11:17:14Z
+storageos:proxy                                                        2021-09-17T11:17:14Z
 storageos:api-manager                                                  2021-09-17T11:17:48Z
 storageos:csi-attacher                                                 2021-09-17T11:17:48Z
 storageos:csi-provisioner                                              2021-09-17T11:17:49Z
@@ -41,7 +41,7 @@ storageosclusters.storageos.com   2021-09-17T11:17:14Z
 
 Resource: mutatingwebhookconfigurations.admissionregistration.k8s.io
 NAME                         WEBHOOKS   AGE
-storageos-mutating-webhook   2          9m19s
+storageos-mutating           2          9m19s
 
 
 Resource: namespaces
@@ -61,59 +61,59 @@ storageos            csi.storageos.com       Delete          Immediate          
 
 Resource: validatingwebhookconfigurations.admissionregistration.k8s.io
 NAME                                                  WEBHOOKS   AGE
-storageos-operator-validating-webhook-configuration   1          9m55s
+storageos-operator                                    1          9m55s
 
 
 Resource: configmaps
 NAME                                    DATA   AGE
 storageos-api-manager-lease             0      56s
-storageos-manager-config                1      93s
-storageos-node-config                   12     65s
+storageos-manager                       1      93s
+storageos-node                          12     65s
 storageos-operator-lease                0      90s
-storageos-related-image-config          8      93s
-storageos-scheduler-config-6d9d6ggtg2   1      76s
+storageos-related-images                8      93s
+storageos-scheduler-6d9d6ggtg2          1      76s
 
 
 Resource: controllerrevisions.apps
 NAME                             CONTROLLER                           REVISION   AGE
-storageos-daemonset-777b56d545   daemonset.apps/storageos-daemonset   1          65s
+storageos-node-777b56d545        daemonset.apps/storageos-node        1          65s
 
 
 Resource: daemonsets.apps
 NAME                  DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
-storageos-daemonset   3         3         3       3            3           <none>          65s
+storageos-node        3         3         3       3            3           <none>          65s
 
 
 Resource: deployments.apps
 NAME                           READY   UP-TO-DATE   AVAILABLE   AGE
 storageos-api-manager          2/2     2            2           58s
-storageos-controller-manager   1/1     1            1           93s
+storageos-operator             1/1     1            1           93s
 storageos-csi-helper           1/1     1            1           59s
 storageos-scheduler            1/1     1            1           76s
 
 
 Resource: endpoints
 NAME                                           ENDPOINTS                                         AGE
-storageos                                      172.17.0.2:5705,172.17.0.3:5705,172.17.0.4:5705   65s
+storageos-api                                  172.17.0.2:5705,172.17.0.3:5705,172.17.0.4:5705   65s
 storageos-api-manager-metrics                  10.36.0.2:8080,10.44.0.2:8080                     59s
-storageos-controller-manager-metrics-service   10.44.0.1:8443                                    93s
-storageos-operator-webhook-service             10.44.0.1:9443                                    93s
+storageos-operator-metrics                     10.44.0.1:8443                                    93s
+storageos-operator-webhook                     10.44.0.1:9443                                    93s
 storageos-webhook                              10.36.0.2:9443,10.44.0.2:9443                     58s
 
 
 Resource: endpointslices.discovery.k8s.io
 NAME                                                 ADDRESSTYPE   PORTS   ENDPOINTS                          AGE
 storageos-api-manager-metrics-fq4bm                  IPv4          8080    10.44.0.2,10.36.0.2                59s
-storageos-controller-manager-metrics-service-97cgv   IPv4          8443    10.44.0.1                          93s
-storageos-operator-webhook-service-vc7ph             IPv4          9443    10.44.0.1                          93s
-storageos-t7s9r                                      IPv4          5705    172.17.0.2,172.17.0.3,172.17.0.4   65s
+storageos-operator-metrics-97cgv                     IPv4          8443    10.44.0.1                          93s
+storageos-operator-webhook-vc7ph                     IPv4          9443    10.44.0.1                          93s
+storageos-api-t7s9r                                  IPv4          5705    172.17.0.2,172.17.0.3,172.17.0.4   65s
 storageos-webhook-47rqn                              IPv4          9443    10.44.0.2,10.36.0.2                58s
 
 
 Resource: leases.coordination.k8s.io
 NAME                          HOLDER                                                                               AGE
-storageos-api-manager-lease   storageos-api-manager-6444b664cc-fbgdp_07a867d0-1ae0-439a-a282-11063412471f          57s
-storageos-operator-lease      storageos-controller-manager-7d57f889f9-zxjdj_5d43b770-903f-45f9-ab42-84056e236558   91s
+storageos-api-manager         storageos-api-manager-6444b664cc-fbgdp_07a867d0-1ae0-439a-a282-11063412471f          57s
+storageos-operator            storageos-controller-manager-7d57f889f9-zxjdj_5d43b770-903f-45f9-ab42-84056e236558   91s
 storageos-scheduler           storageos-scheduler-68f565985b-x444n_707cbab2-dfb2-4566-a1da-34bc7c613637            70s
 
 
@@ -121,57 +121,57 @@ Resource: pods
 NAME                                            READY   STATUS    RESTARTS   AGE
 storageos-api-manager-6444b664cc-fbgdp          1/1     Running   0          59s
 storageos-api-manager-6444b664cc-zx6kp          1/1     Running   0          59s
-storageos-controller-manager-7d57f889f9-zxjdj   2/2     Running   0          94s
+storageos-operator-7d57f889f9-zxjdj             2/2     Running   0          94s
 storageos-csi-helper-776bb75796-l99kw           3/3     Running   0          58s
-storageos-daemonset-9kh64                       3/3     Running   0          66s
-storageos-daemonset-cm4ff                       3/3     Running   0          66s
-storageos-daemonset-gh2k2                       3/3     Running   0          66s
+storageos-node-9kh64                            3/3     Running   0          66s
+storageos-node-cm4ff                            3/3     Running   0          66s
+storageos-node-gh2k2                            3/3     Running   0          66s
 storageos-scheduler-68f565985b-x444n            1/1     Running   0          76s
 
 
 Resource: replicasets.apps
 NAME                                      DESIRED   CURRENT   READY   AGE
 storageos-api-manager-6444b664cc          2         2         2       59s
-storageos-controller-manager-7d57f889f9   1         1         1       94s
+storageos-operator-7d57f889f9             1         1         1       94s
 storageos-csi-helper-776bb75796           1         1         1       60s
 storageos-scheduler-68f565985b            1         1         1       77s
 
 
 Resource: rolebindings.rbac.authorization.k8s.io
 NAME                                    ROLE                                  AGE
-storageos-leader-election-rolebinding   Role/storageos-leader-election-role   94s
+storageos-leader-election               Role/storageos-leader-election        94s
 
 
 Resource: roles.rbac.authorization.k8s.io
 NAME                             CREATED AT
-storageos-leader-election-role   2021-09-17T11:17:14Z
+storageos-leader-election        2021-09-17T11:17:14Z
 
 
 Resource: secrets
 NAME                                   TYPE                                  DATA   AGE
 storageos-api                          kubernetes.io/storageos               2      79s
-storageos-api-manager-sa-token-d7qcs   kubernetes.io/service-account-token   3      60s
-storageos-csi-helper-sa-token-9k28s    kubernetes.io/service-account-token   3      59s
-storageos-daemonset-sa-token-jkdf4     kubernetes.io/service-account-token   3      66s
-storageos-operator-webhook-secret      Opaque                                4      91s
-storageos-scheduler-sa-token-vtzlx     kubernetes.io/service-account-token   3      77s
+storageos-api-manager-token-d7qcs      kubernetes.io/service-account-token   3      60s
+storageos-csi-helper-token-9k28s       kubernetes.io/service-account-token   3      59s
+storageos-nodetoken-jkdf4              kubernetes.io/service-account-token   3      66s
+storageos-operator-webhook             Opaque                                4      91s
+storageos-scheduler-token-vtzlx        kubernetes.io/service-account-token   3      77s
 storageos-webhook                      Opaque                                4      57s
 
 
 Resource: serviceaccounts
 NAME                       SECRETS   AGE
-storageos-api-manager-sa   1         60s
-storageos-csi-helper-sa    1         59s
-storageos-daemonset-sa     1         66s
-storageos-scheduler-sa     1         77s
+storageos-api-manager      1         60s
+storageos-csi-helper       1         59s
+storageos-node             1         66s
+storageos-scheduler        1         77s
 
 
 Resource: services
 NAME                                           TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
-storageos                                      ClusterIP   10.111.213.189   <none>        5705/TCP   66s
+storageos-api                                  ClusterIP   10.111.213.189   <none>        5705/TCP   66s
 storageos-api-manager-metrics                  ClusterIP   10.104.193.95    <none>        8080/TCP   60s
-storageos-controller-manager-metrics-service   ClusterIP   10.104.212.44    <none>        8443/TCP   94s
-storageos-operator-webhook-service             ClusterIP   10.96.106.216    <none>        443/TCP    94s
+storageos-operator-metrics                     ClusterIP   10.104.212.44    <none>        8443/TCP   94s
+storageos-operator-webhook                     ClusterIP   10.96.106.216    <none>        443/TCP    94s
 storageos-webhook                              ClusterIP   10.100.158.201   <none>        443/TCP    59s
 
 
