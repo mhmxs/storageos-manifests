@@ -5,17 +5,17 @@ v1.storageos.com                       Local     True        9m53s
 
 Resource: clusterrolebindings.rbac.authorization.k8s.io
 NAME                                                   ROLE                                                                               AGE
-storageos:operator                                     ClusterRole/storageos-manager-role                                                 9m53s
-storageos:proxy                                        ClusterRole/storageos-proxy-role                                                   9m53s
-storageos:api-manager                                  ClusterRole/storageos:api-manager                                                  9m19s
-storageos:csi-attacher                                 ClusterRole/storageos:csi-attacher                                                 9m19s
-storageos:csi-provisioner                              ClusterRole/storageos:csi-provisioner                                              9m19s
-storageos:csi-resizer                                  ClusterRole/storageos:csi-resizer                                                  9m18s
-storageos:driver-registrar                             ClusterRole/storageos:driver-registrar                                             9m25s
+storageos:operator                                     ClusterRole/storageos:operator                                                     9m53s
+storageos:proxy                                        ClusterRole/storageos:proxy                                                        9m53s
+storageos:api-manager                                  ClusterRole/storageos:api:manager                                                  9m19s
+storageos:csi-attacher                                 ClusterRole/storageos:csi:attacher                                                 9m19s
+storageos:csi-provisioner                              ClusterRole/storageos:csi:provisioner                                              9m19s
+storageos:csi-resizer                                  ClusterRole/storageos:csi:resizer                                                  9m18s
+storageos:driver-registrar                             ClusterRole/storageos:driver:registrar                                             9m25s
 storageos:init                                         ClusterRole/storageos:init                                                         9m25s
-storageos:key-management                               ClusterRole/storageos:key-management                                               9m18s
+storageos:key-management                               ClusterRole/storageos:key:management                                               9m18s
 storageos:node                                         ClusterRole/storageos:node                                                         9m25s
-storageos:scheduler-extender                           ClusterRole/storageos:scheduler-extender                                           9m37s
+storageos:scheduler-extender                           ClusterRole/storageos:scheduler:extender                                           9m37s
 
 
 Resource: clusterroles.rbac.authorization.k8s.io
@@ -67,7 +67,7 @@ storageos-operator                                    1          9m55s
 Resource: configmaps
 NAME                                    DATA   AGE
 storageos-api-manager-lease             0      56s
-storageos-manager                       1      93s
+storageos-operator                      1      93s
 storageos-node                          12     65s
 storageos-operator-lease                0      90s
 storageos-related-images                8      93s
@@ -113,7 +113,7 @@ storageos-webhook-47rqn                              IPv4          9443    10.44
 Resource: leases.coordination.k8s.io
 NAME                          HOLDER                                                                               AGE
 storageos-api-manager         storageos-api-manager-6444b664cc-fbgdp_07a867d0-1ae0-439a-a282-11063412471f          57s
-storageos-operator            storageos-controller-manager-7d57f889f9-zxjdj_5d43b770-903f-45f9-ab42-84056e236558   91s
+storageos-operator            storageos-operator-7d57f889f9-zxjdj_5d43b770-903f-45f9-ab42-84056e236558             91s
 storageos-scheduler           storageos-scheduler-68f565985b-x444n_707cbab2-dfb2-4566-a1da-34bc7c613637            70s
 
 
@@ -139,12 +139,12 @@ storageos-scheduler-68f565985b            1         1         1       77s
 
 Resource: rolebindings.rbac.authorization.k8s.io
 NAME                                    ROLE                                  AGE
-storageos-leader-election               Role/storageos-leader-election        94s
+storageos:leader:election               Role/storageos:leader:election        94s
 
 
 Resource: roles.rbac.authorization.k8s.io
 NAME                             CREATED AT
-storageos-leader-election        2021-09-17T11:17:14Z
+storageos:leader:election        2021-09-17T11:17:14Z
 
 
 Resource: secrets
@@ -152,7 +152,7 @@ NAME                                   TYPE                                  DAT
 storageos-api                          kubernetes.io/storageos               2      79s
 storageos-api-manager-token-d7qcs      kubernetes.io/service-account-token   3      60s
 storageos-csi-helper-token-9k28s       kubernetes.io/service-account-token   3      59s
-storageos-nodetoken-jkdf4              kubernetes.io/service-account-token   3      66s
+storageos-node-token-jkdf4             kubernetes.io/service-account-token   3      66s
 storageos-operator-webhook             Opaque                                4      91s
 storageos-scheduler-token-vtzlx        kubernetes.io/service-account-token   3      77s
 storageos-webhook                      Opaque                                4      57s
