@@ -1,3 +1,69 @@
+Resource: apiservices.apiregistration.k8s.io
+NAME                                   SERVICE   AVAILABLE   AGE
+v1.storageos.com                       Local     True        9m53s
+
+
+Resource: clusterrolebindings.rbac.authorization.k8s.io
+NAME                                                   ROLE                                                                               AGE
+storageos-manager-rolebinding                          ClusterRole/storageos-manager-role                                                 9m53s
+storageos-proxy-rolebinding                            ClusterRole/storageos-proxy-role                                                   9m53s
+storageos:api-manager                                  ClusterRole/storageos:api-manager                                                  9m19s
+storageos:csi-attacher                                 ClusterRole/storageos:csi-attacher                                                 9m19s
+storageos:csi-provisioner                              ClusterRole/storageos:csi-provisioner                                              9m19s
+storageos:csi-resizer                                  ClusterRole/storageos:csi-resizer                                                  9m18s
+storageos:driver-registrar                             ClusterRole/storageos:driver-registrar                                             9m25s
+storageos:init                                         ClusterRole/storageos:init                                                         9m25s
+storageos:key-management                               ClusterRole/storageos:key-management                                               9m18s
+storageos:node                                         ClusterRole/storageos:node                                                         9m25s
+storageos:scheduler-extender                           ClusterRole/storageos:scheduler-extender                                           9m37s
+
+
+Resource: clusterroles.rbac.authorization.k8s.io
+NAME                                                                   CREATED AT
+storageos-manager-role                                                 2021-09-17T11:17:14Z
+storageos-metrics-reader                                               2021-09-17T11:17:14Z
+storageos-proxy-role                                                   2021-09-17T11:17:14Z
+storageos:api-manager                                                  2021-09-17T11:17:48Z
+storageos:csi-attacher                                                 2021-09-17T11:17:48Z
+storageos:csi-provisioner                                              2021-09-17T11:17:49Z
+storageos:csi-resizer                                                  2021-09-17T11:17:49Z
+storageos:driver-registrar                                             2021-09-17T11:17:42Z
+storageos:init                                                         2021-09-17T11:17:42Z
+storageos:key-management                                               2021-09-17T11:17:49Z
+storageos:node                                                         2021-09-17T11:17:42Z
+storageos:scheduler-extender                                           2021-09-17T11:17:31Z
+
+
+Resource: customresourcedefinitions.apiextensions.k8s.io
+NAME                              CREATED AT
+storageosclusters.storageos.com   2021-09-17T11:17:14Z
+
+
+Resource: mutatingwebhookconfigurations.admissionregistration.k8s.io
+NAME                         WEBHOOKS   AGE
+storageos-mutating-webhook   2          9m19s
+
+
+Resource: namespaces
+NAME                 STATUS   AGE
+storageos            Active   10m
+
+
+Resource: priorityclasses.scheduling.k8s.io
+NAME                      VALUE        GLOBAL-DEFAULT   AGE
+storageos                 1000000000   false            9m38s
+
+
+Resource: storageclasses.storage.k8s.io
+NAME                 PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+storageos            csi.storageos.com       Delete          Immediate              true                   9m38s
+
+
+Resource: validatingwebhookconfigurations.admissionregistration.k8s.io
+NAME                                                  WEBHOOKS   AGE
+storageos-operator-validating-webhook-configuration   1          9m55s
+
+
 Resource: configmaps
 NAME                                    DATA   AGE
 kube-root-ca.crt                        1      115s
@@ -45,11 +111,6 @@ storageos-t7s9r                                      IPv4          5705    172.1
 storageos-webhook-47rqn                              IPv4          9443    10.44.0.2,10.36.0.2                58s
 
 
-Resource: ingresses.extensions
-Warning: extensions/v1beta1 Ingress is deprecated in v1.14+, unavailable in v1.22+; use networking.k8s.io/v1 Ingress
-
-
-
 Resource: leases.coordination.k8s.io
 NAME                          HOLDER                                                                               AGE
 storageos-api-manager-lease   storageos-api-manager-6444b664cc-fbgdp_07a867d0-1ae0-439a-a282-11063412471f          57s
@@ -57,10 +118,6 @@ storageos-operator-lease      storageos-controller-manager-7d57f889f9-zxjdj_5d43
 storageos-scheduler           storageos-scheduler-68f565985b-x444n_707cbab2-dfb2-4566-a1da-34bc7c613637            70s
 
 
-Resource: limitranges
-Resource: networkpolicies.networking.k8s.io
-Resource: persistentvolumeclaims
-Resource: poddisruptionbudgets.policy
 Resource: pods
 NAME                                            READY   STATUS    RESTARTS   AGE
 storageos-api-manager-6444b664cc-fbgdp          1/1     Running   0          59s
@@ -82,8 +139,6 @@ storageos-csi-helper-776bb75796           1         1         1       60s
 storageos-scheduler-68f565985b            1         1         1       77s
 
 
-Resource: replicationcontrollers
-Resource: resourcequotas
 Resource: rolebindings.rbac.authorization.k8s.io
 NAME                                    ROLE                                  AGE
 storageos-leader-election-rolebinding   Role/storageos-leader-election-role   94s
