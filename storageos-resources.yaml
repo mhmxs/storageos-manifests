@@ -66,7 +66,6 @@ storageos-operator-validating-webhook-configuration   1          9m55s
 
 Resource: configmaps
 NAME                                    DATA   AGE
-kube-root-ca.crt                        1      115s
 storageos-api-manager-lease             0      56s
 storageos-manager-config                1      93s
 storageos-node-config                   12     65s
@@ -130,7 +129,6 @@ storageos-daemonset-gh2k2                       3/3     Running   0          66s
 storageos-scheduler-68f565985b-x444n            1/1     Running   0          76s
 
 
-Resource: podtemplates
 Resource: replicasets.apps
 NAME                                      DESIRED   CURRENT   READY   AGE
 storageos-api-manager-6444b664cc          2         2         2       59s
@@ -151,7 +149,6 @@ storageos-leader-election-role   2021-09-17T11:17:14Z
 
 Resource: secrets
 NAME                                   TYPE                                  DATA   AGE
-default-token-725d8                    kubernetes.io/service-account-token   3      115s
 storageos-api                          kubernetes.io/storageos               2      79s
 storageos-api-manager-sa-token-d7qcs   kubernetes.io/service-account-token   3      60s
 storageos-csi-helper-sa-token-9k28s    kubernetes.io/service-account-token   3      59s
@@ -163,7 +160,6 @@ storageos-webhook                      Opaque                                4  
 
 Resource: serviceaccounts
 NAME                       SECRETS   AGE
-default                    1         116s
 storageos-api-manager-sa   1         60s
 storageos-csi-helper-sa    1         59s
 storageos-daemonset-sa     1         66s
